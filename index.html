@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kato RP — ER:LC</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        :root{
+            --yellow:#ffd000;
+            --orange:#ff8a00;
+            --black:#0d0d0d;
+            --dark:#171717;
+            --white:#ffffff;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Montserrat',sans-serif;
+            background:linear-gradient(180deg,#0d0d0d,#161616);
+            color:white;
+            overflow-x:hidden;
+        }
+
+        /* SCROLLBAR */
+
+        ::-webkit-scrollbar{
+            width:10px;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:linear-gradient(var(--yellow),var(--orange));
+            border-radius:20px;
+        }
+
+        /* NAVBAR */
+
+        nav{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            z-index:1000;
+            background:rgba(0,0,0,0.75);
+            backdrop-filter:blur(14px);
+            border-bottom:1px solid rgba(255,208,0,0.15);
+        }
+
+        .nav-container{
+            max-width:1500px;
+            margin:auto;
+            padding:15px 35px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+        }
+
+        .logo-section{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo-section img{
+            width:60px;
+            height:60px;
+            object-fit:contain;
+            filter:drop-shadow(0 0 10px rgba(255,208,0,0.4));
+        }
+
+        .logo-section h1{
+            font-size:1.8rem;
+            font-weight:800;
+            background:linear-gradient(90deg,var(--yellow),var(--orange));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            gap:30px;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.3s;
+            position:relative;
+        }
+
+        .nav-links a:hover{
+            color:var(--yellow);
+        }
+
+        /* SERVER CODE */
+
+        .server-copy-box{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            background:#111;
+            border:1px solid rgba(255,208,0,0.2);
+            padding:10px 14px;
+            border-radius:14px;
+        }
+
+        .server-copy-box span{
+            color:var(--yellow);
+            font-weight:700;
+            letter-spacing:1px;
+        }
+
+        .server-copy-box button{
+            border:none;
+            background:linear-gradient(90deg,var(--yellow),var(--orange));
+            padding:10px 16px;
+            border-radius:10px;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .server-copy-box button:hover{
+            transform:scale(1.05);
+        }
+
+        /* HERO */
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+            padding:120px 20px 80px;
+        }
+
+        .hero::before{
+            content:"";
+            position:absolute;
+            width:900px;
+            height:900px;
+            background:radial-gradient(circle,var(--orange),transparent 70%);
+            opacity:0.15;
+            top:-300px;
+            right:-250px;
+        }
+
+        .hero::after{
+            content:"";
+            position:absolute;
+            width:800px;
+            height:800px;
+            background:radial-gradient(circle,var(--yellow),transparent 70%);
+            opacity:0.12;
+            bottom:-350px;
+            left:-250px;
+        }
+
+        .hero-content{
+            position:relative;
+            z-index:2;
+            max-width:1000px;
+        }
+
+        .hero-logo{
+            width:180px;
+            margin-bottom:35px;
+            animation:floating 5s ease-in-out infinite;
+        }
+
+        .hero h2{
+            font-size:5rem;
+            line-height:1;
+            margin-bottom:25px;
+            font-weight:800;
+        }
+
+        .gradient{
+            background:linear-gradient(90deg,var(--yellow),var(--orange));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .hero p{
+            font-size:1.25rem;
+            line-height:1.9;
+            color:#d4d4d4;
+            margin-bottom:40px;
+        }
+
+        .buttons{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:18px 35px;
+            border-radius:16px;
+            text-decoration:none;
+            font-weight:700;
+            transition:0.3s;
+            display:inline-block;
+        }
+
+        .btn-primary{
+            background:linear-gradient(90deg,var(--yellow),var(--orange));
+            color:black;
+            box-shadow:0 0 30px rgba(255,174,0,0.25);
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-5px);
+        }
+
+        .btn-secondary{
+            border:2px solid var(--yellow);
+            color:white;
+        }
+
+        .btn-secondary:hover{
+            background:rgba(255,208,0,0.1);
+        }
+
+        /* SECTIONS */
+
+        section{
+            padding:120px 35px;
+        }
+
+        .container{
+            max-width:1450px;
+            margin:auto;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:70px;
+        }
+
+        .section-title h3{
+            font-size:3rem;
+            margin-bottom:15px;
+        }
+
+        .section-title p{
+            color:#bdbdbd;
+            font-size:1.1rem;
+        }
+
+        /* FEATURES */
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
+        }
+
+        .feature-card{
+            background:linear-gradient(180deg,#1a1a1a,#111111);
+            border:1px solid rgba(255,208,0,0.1);
+            border-radius:24px;
+            padding:35px;
+            transition:0.3s;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .feature-card:hover{
+            transform:translateY(-10px);
+            border-color:rgba(255,208,0,0.35);
+        }
+
+        .feature-card::before{
+            content:"";
+            position:absolute;
+            width:250px;
+            height:250px;
+            background:radial-gradient(circle,var(--yellow),transparent 70%);
+            opacity:0.06;
+            top:-100px;
+            right:-100px;
+        }
+
+        .feature-card h4{
+            color:var(--yellow);
+            margin-bottom:18px;
+            font-size:1.4rem;
+        }
+
+        .feature-card p{
+            color:#d0d0d0;
+            line-height:1.8;
+        }
+
+        /* FRACTIONS */
+
+        .tree{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:45px;
+        }
+
+        .tree-root{
+            background:linear-gradient(90deg,var(--yellow),var(--orange));
+            color:black;
+            padding:20px 40px;
+            border-radius:18px;
+            font-size:1.6rem;
+            font-weight:800;
+            box-shadow:0 0 30px rgba(255,208,0,0.25);
+        }
+
+        .tree-grid{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:25px;
+            width:100%;
+        }
+
+        .branch{
+            flex:1 1 260px;
+            max-width:320px;
+            background:#141414;
+            border:1px solid rgba(255,255,255,0.08);
+            border-radius:24px;
+            padding:30px;
+            transition:0.3s;
+        }
+
+        .branch:hover{
+            transform:translateY(-8px);
+            border-color:rgba(255,208,0,0.25);
+        }
+
+        .branch h4{
+            color:var(--yellow);
+            margin-bottom:20px;
+            font-size:1.25rem;
+        }
+
+        .branch ul{
+            list-style:none;
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        .branch li{
+            background:#1d1d1d;
+            padding:15px;
+            border-radius:14px;
+            border-left:4px solid var(--orange);
+            color:#d6d6d6;
+        }
+
+        /* MAP */
+
+        .map-layout{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:60px;
+            flex-wrap:wrap;
+        }
+
+        .map-left{
+            flex:1;
+            min-width:320px;
+        }
+
+        .map-left h4{
+            font-size:2.7rem;
+            margin-bottom:20px;
+        }
+
+        .map-left p{
+            color:#d0d0d0;
+            line-height:1.9;
+            margin-bottom:35px;
+            font-size:1.05rem;
+        }
+
+        .map-tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:15px;
+        }
+
+        .map-tag{
+            background:#161616;
+            border:1px solid rgba(255,208,0,0.18);
+            padding:14px 20px;
+            border-radius:14px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .map-tag:hover{
+            transform:translateY(-4px);
+            border-color:rgba(255,208,0,0.35);
+        }
+
+        .map-right{
+            flex:1;
+            min-width:320px;
+            display:flex;
+            justify-content:center;
+        }
+
+        .map-container{
+            width:100%;
+            max-width:600px;
+            border-radius:30px;
+            overflow:hidden;
+            border:2px solid rgba(255,208,0,0.15);
+            position:relative;
+            box-shadow:0 0 40px rgba(255,174,0,0.12);
+        }
+
+        .map-container img{
+            width:100%;
+            display:block;
+        }
+
+        .map-overlay{
+            position:absolute;
+            inset:0;
+            background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.25));
+        }
+
+        /* DISCORD */
+
+        .discord-box{
+            background:linear-gradient(135deg,#1a1a1a,#111111);
+            border:1px solid rgba(255,208,0,0.15);
+            border-radius:35px;
+            padding:70px 40px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .discord-box::before{
+            content:"";
+            position:absolute;
+            width:500px;
+            height:500px;
+            background:radial-gradient(circle,var(--orange),transparent 70%);
+            opacity:0.1;
+            top:-250px;
+            right:-200px;
+        }
+
+        .discord-box h3{
+            font-size:3rem;
+            margin-bottom:20px;
+            position:relative;
+            z-index:2;
+        }
+
+        .discord-box p{
+            color:#d0d0d0;
+            line-height:1.9;
+            margin-bottom:35px;
+            position:relative;
+            z-index:2;
+        }
+
+        /* FOOTER */
+
+        footer{
+            padding:40px;
+            text-align:center;
+            border-top:1px solid rgba(255,255,255,0.06);
+            color:#9e9e9e;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes floating{
+            0%{
+                transform:translateY(0px);
+            }
+            50%{
+                transform:translateY(-10px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1200px){
+
+            .nav-container{
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+        }
+
+        @media(max-width:900px){
+
+            .hero h2{
+                font-size:3rem;
+            }
+
+            .nav-links{
+                display:none;
+            }
+
+            section{
+                padding:90px 20px;
+            }
+
+            .map-layout{
+                flex-direction:column;
+            }
+
+            .map-left h4{
+                font-size:2rem;
+            }
+
+            .discord-box h3{
+                font-size:2.2rem;
+            }
+
+            .server-copy-box{
+                width:100%;
+                justify-content:center;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <div class="logo-section">
+                <img src="logo.png" alt="Kato RP Logo">
+                <h1>Kato RP</h1>
+            </div>
+
+            <div class="nav-links">
+                <a href="#about">O serwerze</a>
+                <a href="#factions">Frakcje</a>
+                <a href="#map">Mapa</a>
+                <a href="#discord">Discord</a>
+            </div>
+
+            <div class="server-copy-box">
+
+                <span id="serverCode">
+                    katoRP
+                </span>
+
+                <button onclick="copyCode()">
+                    Skopiuj
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <img src="logo.png" alt="Logo" class="hero-logo">
+
+            <h2>
+                <span class="gradient">Kato RP</span><br>
+                Prawdziwy Śląski klimat
+            </h2>
+
+            <p>
+                Profesjonalny serwer ER:LC inspirowany klimatem Katowic.
+                Realistyczne frakcje, nowoczesna ekonomia,
+                aktywna administracja i wyjątkowa społeczność.
+            </p>
+
+            <div class="buttons">
+
+                <a href="https://discord.gg/JjU5mBzqqA"
+                   target="_blank"
+                   class="btn btn-primary">
+
+                    Dołącz na Discord
+
+                </a>
+
+                <a href="#factions" class="btn btn-secondary">
+
+                    Zobacz frakcje
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h3>
+                    <span class="gradient">
+                        Dlaczego Kato RP?
+                    </span>
+                </h3>
+
+                <p>
+                    Nowoczesny roleplay w klimacie Śląska.
+                </p>
+
+            </div>
+
+            <div class="features">
+
+                <div class="feature-card">
+
+                    <h4>🌆 Prawdziwy Śląski klimat</h4>
+
+                    <p>
+                        Dzielnice inspirowane Katowicami,
+                        charakterystyczne drogi oraz realistyczna atmosfera miasta.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <h4>🛡️ Miła administracja</h4>
+
+                    <p>
+                        Administracja aktywnie pomaga graczom
+                        i dba o wysoki poziom roleplay.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <h4>💼 Profesjonalne podejście</h4>
+
+                    <p>
+                        Starannie przygotowane systemy,
+                        dopracowane frakcje oraz ciągły rozwój serwera.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <h4>💰 Ponadczasowa ekonomia</h4>
+
+                    <p>
+                        Rozbudowany system ekonomii discordowej
+                        zapewniający aktywną i stabilną rozgrywkę.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FRACTIONS -->
+
+    <section id="factions">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h3>
+                    <span class="gradient">
+                        Struktura frakcji
+                    </span>
+                </h3>
+
+                <p>
+                    Najważniejsze organizacje działające na Kato RP.
+                </p>
+
+            </div>
+
+            <div class="tree">
+
+                <div class="tree-root">
+                    KATO RP
+                </div>
+
+                <div class="tree-grid">
+
+                    <div class="branch">
+
+                        <h4>🚔 Policja</h4>
+
+                        <ul>
+                            <li>Komenda Miejska Policji w Katowicach</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="branch">
+
+                        <h4>🚒 Straż Pożarna</h4>
+
+                        <ul>
+                            <li>Komenda Miejska Państwowej Straży Pożarnej</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="branch">
+
+                        <h4>🚑 Ratownictwo</h4>
+
+                        <ul>
+                            <li>Państwowe Ratownictwo Medyczne</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="branch">
+
+                        <h4>🪖 Wojsko Polskie</h4>
+
+                        <ul>
+                            <li>Żandarmeria Wojskowa</li>
+                            <li>??? — Coming Soon</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="branch">
+
+                        <h4>🛣️ Służby Drogowo-Energetyczne</h4>
+
+                        <ul>
+                            <li>GDDKiA</li>
+                            <li>Pomoc Drogowa</li>
+                            <li>Pogotowie Energetyczne</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MAP -->
+
+    <section id="map">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h3>
+                    <span class="gradient">
+                        Mapa serwera
+                    </span>
+                </h3>
+
+                <p>
+                    Najważniejsze drogi i dzielnice Kato RP.
+                </p>
+
+            </div>
+
+            <div class="map-layout">
+
+                <!-- LEFT -->
+
+                <div class="map-left">
+
+                    <h4>
+                        <span class="gradient">
+                            Infrastruktura Kato RP
+                        </span>
+                    </h4>
+
+                    <p>
+                        Serwer posiada realistyczny układ dzielnic,
+                        rozbudowaną sieć dróg oraz miejsca
+                        inspirowane prawdziwym klimatem Katowic.
+                    </p>
+
+                    <div class="map-tags">
+
+                        <div class="map-tag">
+                            🛣️ Autostrada A4
+                        </div>
+
+                        <div class="map-tag">
+                            🚧 DW902
+                        </div>
+
+                        <div class="map-tag">
+                            🏙️ Śródmieście
+                        </div>
+
+                        <div class="map-tag">
+                            🌲 Ligota
+                        </div>
+
+                        <div class="map-tag">
+                            🏘️ Panewniki
+                        </div>
+
+                        <div class="map-tag">
+                            ⛰️ Murcki
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="map-right">
+
+                    <div class="map-container">
+
+                        <img src="mapa.png" alt="Mapa serwera">
+
+                        <div class="map-overlay"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- DISCORD -->
+
+    <section id="discord">
+
+        <div class="container">
+
+            <div class="discord-box">
+
+                <h3>
+                    <span class="gradient">
+                        Dołącz do społeczności Kato RP
+                    </span>
+                </h3>
+
+                <p>
+                    Rozpocznij swoją historię na jednym z najbardziej
+                    klimatycznych polskich serwerów ER:LC.
+                    Wejdź na Discord i zacznij swoją przygodę już teraz.
+                </p>
+
+                <a href="https://discord.gg/JjU5mBzqqA"
+                   target="_blank"
+                   class="btn btn-primary">
+
+                    Wejdź na Discord
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Kato RP — ER:LC | Prawdziwy Śląski klimat
+    </footer>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        function copyCode(){
+
+            navigator.clipboard.writeText("katoRP");
+
+            const button = document.querySelector(".server-copy-box button");
+
+            button.innerText = "Skopiowano!";
+
+            setTimeout(() => {
+
+                button.innerText = "Skopiuj";
+
+            },2000);
+
+        }
+
+    </script>
+
+</body>
+</html>
