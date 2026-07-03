@@ -168,6 +168,14 @@
             position:relative;
             overflow:hidden;
             padding:120px 20px 80px;
+
+            background-image:url("backg.png");
+            background-size:100%;
+            background-position:center;
+            background-repeat:no-repeat;
+
+            transition:background-size .25s ease-out,
+                    background-position .08s linear;
         }
 
         .hero::before{
@@ -960,8 +968,54 @@
             },2000);
 
         }
+        const hero = document.querySelector(".hero");
+
+        let scrolling = false;
+        let scrollTimeout;
+
+        /* wykrywanie scrolla */
+        window.addEventListener("scroll", () => {
+
+            scrolling = true;
+
+            // reset efektu podczas scrollowania
+            hero.style.backgroundSize = "100%";
+            hero.style.backgroundPosition = "center";
+
+            clearTimeout(scrollTimeout);
+
+            scrollTimeout = setTimeout(() => {
+                scrolling = false;
+            }, 150);
+
+        });
+
+        /* efekt podążania za myszką */
+        hero.addEventListener("mousemove", (e) => {
+
+            if (scrolling) return;
+
+            const rect = hero.getBoundingClientRect();
+
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            hero.style.backgroundSize = "115%";
+            hero.style.backgroundPosition = `${x}% ${y}%`;
+
+        });
+
+        /* reset po wyjechaniu myszką */
+        hero.addEventListener("mouseleave", () => {
+
+            hero.style.backgroundSize = "100%";
+            hero.style.backgroundPosition = "center";
+
+        });
 
     </script>
+
+    
 
 </body>
 </html>
