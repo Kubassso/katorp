@@ -55,6 +55,7 @@
 const video = document.getElementById("intro");
 
 video.addEventListener("ended", () => {
+    sessionStorage.setItem("katorpIntroPlayed", "true");
     window.location.href = "https://kubassso.github.io/katorp/glowna";
 });
 </script>
