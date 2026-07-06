@@ -17,9 +17,18 @@
     <!-- Twitter (Discord też to czyta jako fallback) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://kubassso.github.io/katorp/logo.png" />
-
     <meta charset="UTF-8">
+
+    <script>
+    if (sessionStorage.getItem("katorpIntroPlayed") !== "true") {
+        window.location.replace("https://kubassso.github.io/katorp/");
+    } else {
+        sessionStorage.removeItem("katorpIntroPlayed");
+    }
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kato RP — ER:LC</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
