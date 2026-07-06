@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kato RP — ER:LC</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kato RP — ER:LC" />
+    <meta property="og:description" content="Prawdziwy Śląski klimat | Miła administracja | Profesjonalne RP | Ekonomia Discord" />
+    <meta property="og:image" content="https://kubassso.github.io/katorp/logo.png" />
+    <meta property="og:url" content="https://kubassso.github.io/katorp/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter (Discord używa jako fallback) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://kubassso.github.io/katorp/logo.png" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain; /* zmień na cover jeśli ma wypełniać cały ekran */
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+
+<video id="intro" autoplay muted playsinline preload="auto">
+    <source src="katorp.mp4" type="video/mp4">
+</video>
+
+<script>
+const video = document.getElementById("intro");
+
+video.addEventListener("ended", () => {
+    window.location.href = "https://kubassso.github.io/katorp/glowna";
+});
+</script>
+
+</body>
+</html>
